@@ -1,0 +1,46 @@
+<div class="card p-0" style="border-radius: 1.25rem">
+  <div class="card-body col-lg-12">
+    <div class="d-flex justify-content-between">
+      <div class="text-center">
+        <h5>Books</h5>
+      </div>
+    </div>
+    <table class="table table-bordered mt-3">
+      <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Author</th>
+          <th scope="col">Genre</th>
+          <th scope="col">Language</th>
+          <th scope="col">Publication Year</th>
+          <th scope="col">Status</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of booksList">
+          <td>{{ book?.title }}</td>
+          <td>{{ book?.author }}</td>
+          <td>{{ book?.genre }}</td>
+          <td>{{ book?.language }}</td>
+          <td>{{ book?.publication_year }}</td>
+          <td>{{ book?.status }}</td>
+          <td class="d-flex">
+            <button *ngIf="book?.availability" 
+              class="btn btn-success btn-sm"
+              (click)="borrowBook(book.id)"
+              >
+              Borrow
+            </button>
+            <button  *ngIf="!book?.availability"
+              class="btn btn-danger btn-sm"
+              (click)="returnBook(book.id)"
+              >
+              Return
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

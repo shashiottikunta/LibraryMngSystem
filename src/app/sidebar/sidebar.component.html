@@ -1,0 +1,18 @@
+<div class="wrapper">
+  <div class="sidebar">
+    <ul *ngIf="isAdmin" class="menu">
+      <li *ngFor="let data of menuList">
+        <a class="btn" [routerLink]="['/' + data.path]" routerLinkActive="selected">
+          <i class="fas fa-tachometer-alt"></i> {{ data.name }}
+        </a>
+      </li>
+    </ul>
+    <ul *ngIf="!isAdmin" class="menu">
+      <li *ngFor="let data of menuList1">
+        <a class="btn" [routerLink]="['/' + data.path]" routerLinkActive="selected">
+          <i class="fas fa-tachometer-alt"></i> {{ data.name }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

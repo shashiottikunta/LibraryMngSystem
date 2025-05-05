@@ -1,0 +1,32 @@
+<div class="container-fluid d-flex align-items-center justify-content-center main-container">
+    <div class="left-section"></div>
+    <div class="right-section">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="text-center"><b>Library Management System</b></h4>
+                <form [formGroup]="registerForm">
+                    <div class="mb-3">
+                      <label>Name </label>
+                      <input class="form-control" placeholder="Enter Name" formControlName="name">
+                    </div>
+            
+                    <div class="mb-3">
+                      <label>Email </label>
+                      <input class="form-control" placeholder="Enter Email" type="email" formControlName="email">
+                    </div>
+            
+                    <div class="mb-3">
+                      <label>Password </label>
+                      <input class="form-control" placeholder="Enter Password" type="password" formControlName="password">
+                    </div>
+            
+                  </form>
+                <div class="text-center pt-3">
+                    <button class="cancel-button" [routerLink]="['/login']">Back</button>&nbsp;
+                    <button class="btn btn-primary" (click)="submit()">Register</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

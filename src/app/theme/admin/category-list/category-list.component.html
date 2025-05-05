@@ -1,0 +1,60 @@
+<div class="card p-0" style="border-radius: 1.25rem">
+    <div class="card-body col-lg-12">
+      <div class="d-flex justify-content-between">
+        <div class="text-center">
+          <h5>Category</h5>
+        </div>
+        <div class="text-left">
+          <button class="btn btn-success" (click)="showModal('add')">Add Category</button>
+        </div>
+      </div>
+      <table class="table table-bordered mt-3">
+        <thead>
+          <tr>
+            <th scope="col">Name </th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let category of categoryList">
+            <td>{{ category?.name }}</td>
+            <td>{{ category?.status }}</td>
+            <td>
+              <i class="fa fa-pencil-square-o" (click)="showModal('edit', category)"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div bsModal #updateData="bs-modal" class="modal fade" id="bookModal" role="dialog"
+  [config]="{backdrop: 'static'}" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><strong>{{ isEditMode ? 'Edit' : 'Add' }} Category</strong></h4>
+      </div>
+      <form [formGroup]="categoryForm">
+        <div class="modal-body">
+          <div class="col-lg-12">
+            <label>Title</label>
+            <input class="form-control" formControlName="name" placeholder="Enter Category Title">
+          </div>    
+          <div class="col-lg-12 pt-2" *ngIf="isEditMode">
+            <label>Status</label>
+            <select class="form-control" formControlName="status">
+                <option disabled value=''>Select Status</option>
+                <option *ngFor="let status of statusList" [value]="status">{{status}}</option>
+            </select>
+          </div>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button type="button" class="save-button" (click)="submit()">{{ getSaveButtonText() }}</button>
+        <button type="button" class="cancel-button" (click)="hideModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

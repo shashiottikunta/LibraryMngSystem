@@ -1,0 +1,64 @@
+
+<div>
+  <nav class="navbar navbar-expand-sm b fixed-top" style="background-color: #022019ee;">
+    <div>
+      <a class="navbar-brand title">Library Management System</a>
+    </div>
+    <div style="float:right; margin-left:auto; padding-right: 120px; display: flex; align-items: center" ngbDropdown>
+      <ngx-avatar bgColor="#dfdbd7" fgColor="#5c5656" class="icon-style" [name]="userName" size="40" [initialsSize]="2"></ngx-avatar>&nbsp;
+      <label data-bs-toggle="dropdown" aria-expanded="false"  style="color:white"type="submit">{{ userName }}</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <i class="fa fa-unlock logout-icon" aria-hidden="true" (click)="showModal()" title="Change Password"></i>  &nbsp; &nbsp;
+      <i class="fa fa-sign-out logout-icon" (click)="logout()" title="Logout"></i>
+    </div>
+  </nav>
+</div>
+
+
+<div bsModal #changePassowrdData="bs-modal" class="modal fade" id="changePasswordModal" role="dialog"
+  [config]="{backdrop: 'static'}" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><strong>Change Password</strong></h4>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="changePasswordForm">
+          <div class="d-flex">
+            <div class="col-lg-11 p-0">
+              <div class="row d-flex col-lg-12 m-0 p-0">
+                <div class="col-lg-12 p-2">
+                  <label>Current Password <span class="mandatory">*</span></label>
+                  <input class="form-control" formControlName="currentPassword" placeholder="Enter Current Passowrd"
+                    [ngClass]="{ 'is-invalid': (submitted || changePasswordForm.controls['currentPassword'].touched) && changePasswordForm.controls['currentPassword'].errors }">
+                  <div
+                    *ngIf="(submitted ||changePasswordForm.controls['currentPassword'].touched) && changePasswordForm.controls['currentPassword'].errors"
+                    class="invalid-feedback">
+                    <div *ngIf="changePasswordForm.controls['currentPassword'].errors?.['required']">Field Required
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12 p-2">
+                  <label>New Password <span class="mandatory">*</span></label>
+                  <input class="form-control" formControlName="newPassword" placeholder="Enter New Passowrd"
+                    [ngClass]="{ 'is-invalid': (submitted || changePasswordForm.controls['newPassword'].touched) && changePasswordForm.controls['newPassword'].errors }">
+                  <div
+                    *ngIf="(submitted ||changePasswordForm.controls['newPassword'].touched) && changePasswordForm.controls['newPassword'].errors"
+                    class="invalid-feedback">
+                    <div *ngIf="changePasswordForm.controls['newPassword'].errors?.['required']">Field Required</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="save-button" [disabled]="!changePasswordForm.valid"
+          (click)="submit()">Save</button>
+        <button type="button" class="cancel-button" (click)="hideModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,52 @@
+.main-container {
+  height: 100vh;
+  display: flex;
+}
+
+.left-section {
+  flex: 1;
+  background-image: url('../../assets/lms1.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+}
+
+.right-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.card {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background: hsla(0, 3%, 94%, 0.966);
+  backdrop-filter: blur(30px);
+}
+
+.save-button {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.cancel-button {
+  background-color: #6c757d;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.save-button:hover,
+.cancel-button:hover {
+  opacity: 0.8;
+}

@@ -1,0 +1,72 @@
+<div class="card p-0" style="border-radius: 1.25rem">
+  <div class="card-body col-lg-12">
+    <div class="d-flex justify-content-between">
+      <div class="text-center">
+        <h5>Users</h5>
+      </div>
+      <div class="text-left">
+        <button class="btn btn-success" (click)="showModal('add')">Add User</button>
+      </div>
+    </div>
+
+    <table class="table table-bordered mt-3">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Email Id</th>
+          <th scope="col">Status</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of usersList">
+          <td>{{ user?.name }}</td>
+          <td>{{ user?.email }}</td>
+          <td>{{ user?.status }}</td>
+          <td>
+            <i class="fa fa-pencil-square-o" (click)="showModal('edit', user)"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div bsModal #updateData="bs-modal" class="modal fade" id="userModal" role="dialog"
+  [config]="{backdrop: 'static'}" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><strong>{{ isEditMode ? 'Edit' : 'Add' }} User</strong></h4>
+      </div>
+      <form [formGroup]="userForm">
+        <div class="modal-body">
+          <div class="col-lg-12">
+            <label>Name</label>
+            <input class="form-control" formControlName="name" placeholder="Enter Name">
+          </div>
+          <div class="col-lg-12 pt-2">
+            <label>Email</label>
+            <input class="form-control" formControlName="email" placeholder="Enter Email">
+          </div>
+          <div class="col-lg-12 pt-2" *ngIf="!isEditMode">
+            <label>Password</label>
+            <input class="form-control" formControlName="password" placeholder="Enter Password" type="password">
+          </div>
+          <div class="col-lg-12 pt-2" *ngIf="isEditMode">
+            <label>Select Status</label>
+            <select class="form-control" formControlName="status">
+                <option disabled value=''>Select Status</option>
+                <option *ngFor="let status of statusList" [value]="status">{{status}}</option>
+            </select>
+          </div>
+        </div>
+      </form>
+      
+      <div class="modal-footer">
+        <button type="button" class="save-button" (click)="submit()">{{ getSaveButtonText() }}</button>
+        <button type="button" class="cancel-button" (click)="hideModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

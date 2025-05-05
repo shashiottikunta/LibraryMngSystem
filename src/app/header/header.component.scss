@@ -1,0 +1,27 @@
+.title{
+  font-size: 17px;
+  color: white;
+  font-weight: bold;
+  padding-left: 30px;
+  font-style: oblique;
+}
+.dropdown{
+  color: white;
+}
+
+.name1 {
+  font-size: 13px;
+  margin-top: 8px;
+  font-family:Arial;
+}
+
+.logout-icon {
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.logout-icon:hover {
+  color: #ff4d4d;
+}

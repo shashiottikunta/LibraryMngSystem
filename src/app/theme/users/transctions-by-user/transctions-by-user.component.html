@@ -1,0 +1,29 @@
+<div class="card p-0" style="border-radius: 1.25rem">
+    <div class="card-body col-lg-12">
+      <div class="d-flex justify-content-between">
+        <div class="text-center">
+          <h5>Transctions</h5>
+        </div>
+      </div>
+      <table class="table table-bordered mt-3">
+        <thead>
+          <tr>
+            <th scope="col">Book</th>
+            <th scope="col">Borrow Date</th>
+            <th scope="col">Return Date</th>
+            <th scope="col">Due Date </th>
+            <th scope="col">Late Fee</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let transaction of transactionsList">
+            <td>{{ transaction?.book }}</td>
+            <td>{{ transaction?.borrow_date | date }}</td>
+            <td>{{ transaction?.return_date | date }}</td>
+            <td>{{ transaction?.due_date |date}}</td>
+            <td>{{ transaction?.late_fee }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

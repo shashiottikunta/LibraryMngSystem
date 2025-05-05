@@ -1,0 +1,146 @@
+<div class="card p-0" style="border-radius: 1.25rem">
+  <div class="card-body col-lg-12">
+    <div class="d-flex justify-content-between">
+      <div class="text-center">
+        <h5>Books</h5>
+      </div>
+      <div class="text-left">
+        <button class="btn btn-success" (click)="showModal('add')">Add Book</button>
+      </div>
+    </div>
+    <table class="table table-bordered mt-3">
+      <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Author</th>
+          <th scope="col">Genre</th>
+          <th scope="col">Language</th>
+          <th scope="col">Publication Year</th>
+          <th scope="col">Status</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of booksList">
+          <td>{{ book?.title }}</td>
+          <td>{{ book?.author }}</td>
+          <td>{{ book?.genre }}</td>
+          <td>{{ book?.language }}</td>
+          <td>{{ book?.publication_year }}</td>
+          <td>{{ book?.status }}</td>
+          <td>
+            <i class="fa fa-pencil-square-o" (click)="showModal('edit', book)"></i>
+            <button class="btn btn-warning" (click)="showtransctions(book.id)">Transaction</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div bsModal #updateData="bs-modal" class="modal fade" id="bookModal" role="dialog"
+  [config]="{backdrop: 'static'}" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><strong>{{ isEditMode ? 'Edit' : 'Add' }} Book</strong></h4>
+      </div>
+      <form [formGroup]="bookForm">
+        <div class="modal-body">
+          <div class="col-lg-12">
+            <label>Title</label>
+            <input class="form-control" formControlName="title" placeholder="Enter Book Title">
+          </div>
+          <div class="col-lg-12 pt-2">
+            <label>Author</label>
+            <input class="form-control" formControlName="author" placeholder="Enter Author Name">
+          </div>
+          <div class="col-lg-12 pt-2">
+            <label>Genre</label>
+            <input class="form-control" formControlName="genre" placeholder="Enter Genre">
+          </div>
+          <div class="col-lg-12 pt-2">
+            <label>Category</label>
+            <select class="form-control" formControlName="category_id">
+                <option disabled value=null>Select Category</option>
+                <option *ngFor="let category of categoryList" [value]="category.id">{{category.name}}</option>
+            </select>
+          </div>
+          <div class="col-lg-12 pt-2">
+            <label>Language</label>
+            <input class="form-control" formControlName="language" placeholder="Enter Language">
+          </div>
+          <div class="col-lg-12 pt-2">
+            <label>Publication Year</label>
+            <input class="form-control" formControlName="publication_year" placeholder="Enter Year" type="number">
+          </div>
+          <div class="col-lg-12 pt-2">
+            <label>Availability</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" formControlName="availability" value="true" id="availableYes">
+              <label class="form-check-label" for="availableYes">Yes</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" formControlName="availability" value="false" id="availableNo">
+              <label class="form-check-label" for="availableNo">No</label>
+            </div>
+          </div>
+          
+          <div class="col-lg-12 pt-2" *ngIf="isEditMode">
+            <label>Status</label>
+            <select class="form-control" formControlName="status">
+                <option disabled value=''>Select Status</option>
+                <option *ngFor="let status of statusList" [value]="status">{{status}}</option>
+            </select>
+          </div>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button type="button" class="save-button" (click)="submit()">{{ getSaveButtonText() }}</button>
+        <button type="button" class="cancel-button" (click)="hideModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div bsModal #transcationsData="bs-modal" class="modal fade" id="bookModal" role="dialog"
+  [config]="{backdrop: 'static'}" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Transactions</h4>
+      </div>
+        <div class="modal-body">
+          <table class="table table-bordered mt-3">
+            <thead>
+              <tr>
+                <th scope="col">User</th>
+                <th scope="col">Book</th>
+                <th scope="col">Borrowdate</th>
+                <th scope="col">Returndate</th>
+                <th scope="col">Duedate</th>
+                <th scope="col">Late fee</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let tranction of transcationsList">
+                <td>{{ tranction?.user }}</td>
+                <td>{{ tranction?.book }}</td>
+                <td>{{ tranction?.borrow_date |date }}</td>
+                <td>{{ tranction?.return_date |date }}</td>
+                <td>{{ tranction?.due_date |date }}</td>
+                <td>{{ tranction?.late_fee }}</td>
+             
+              </tr>
+            </tbody>
+          </table>
+
+       
+        </div>
+        <div class="modal-footer">
+
+        <button type="button" class="cancel-button" (click)="hidetransctions()">Close</button>
+</div>
+    </div>
+  </div>
+</div>

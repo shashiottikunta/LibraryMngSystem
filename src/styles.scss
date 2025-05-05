@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+.mandatory{
+    color: red;
+}
+
+input::placeholder {
+    font-weight: normal ;
+    color:gray;
+    font-size: 13px;
+}
+
+
+label{
+    font-size: 14px;
+}
+
+
+.save-button {
+    background-color:#073f31ee ;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .cancel-button {
+    background-color:#838683ee ;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .card {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding-top: 0px;
+    margin-top: 0px;
+  }
